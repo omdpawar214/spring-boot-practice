@@ -5,6 +5,7 @@ import in.practice.s_b_practical.DTO.reqDto;
 import in.practice.s_b_practical.DTO.resDto;
 import in.practice.s_b_practical.entity.Student;
 import in.practice.s_b_practical.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class studentController {
 
     //create student
     @PostMapping("/")
-    public ResponseEntity<resDto> createStudent(@RequestBody reqDto reqDto){
+    public ResponseEntity<resDto> createStudent( @Valid @RequestBody reqDto reqDto){
         resDto student = service.createStud(reqDto);
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }

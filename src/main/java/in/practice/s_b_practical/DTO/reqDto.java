@@ -1,9 +1,14 @@
 package in.practice.s_b_practical.DTO;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+
 public class reqDto {
 
+    @Min(value = 18 , message = "you must be 18+ for enrollment")
     private int age;
     private int rollno;
+    @Email
     private String email;
     private String name;
 
