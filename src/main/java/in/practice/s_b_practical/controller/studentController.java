@@ -1,6 +1,8 @@
 package in.practice.s_b_practical.controller;
 
 
+import in.practice.s_b_practical.DTO.reqDto;
+import in.practice.s_b_practical.DTO.resDto;
 import in.practice.s_b_practical.entity.Student;
 import in.practice.s_b_practical.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,9 @@ public class studentController {
 
     //create student
     @PostMapping("/")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student){
-        Student student1 = service.createStud(student);
-        return new ResponseEntity<>(student1, HttpStatus.CREATED);
+    public ResponseEntity<resDto> createStudent(@RequestBody reqDto reqDto){
+        resDto student = service.createStud(reqDto);
+        return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
     @GetMapping("/")
