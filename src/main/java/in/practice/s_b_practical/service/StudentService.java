@@ -2,6 +2,7 @@ package in.practice.s_b_practical.service;
 
 import in.practice.s_b_practical.DTO.reqDto;
 import in.practice.s_b_practical.DTO.resDto;
+import in.practice.s_b_practical.ExceptionHandler.ResourceNotFoundException;
 import in.practice.s_b_practical.entity.Student;
 import in.practice.s_b_practical.repository.StudentRepository;
 import org.modelmapper.ModelMapper;
@@ -67,11 +68,9 @@ public class StudentService {
 
     }
 
-    public String delstudent(Long studentId) {
-        Optional<Student> stud = repository.findById(studentId);
-        if(stud ==null) return "student not found";
-        Student student = stud.get();
-        repository.delete(student);
+    public String delstudent(Long studentId){
+        Student stud = repository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student not found with Id- "+studentId));
+        repository.delete(stud);
         return "deleted";
     }
 }
